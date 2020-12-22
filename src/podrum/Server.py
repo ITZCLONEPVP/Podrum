@@ -78,10 +78,10 @@ class Server:
     def getAddress(self):
         return self.addr
     
-    def getPort(self):
+    def getPort(self) -> int:
         return self.port
 
-    def sendMessage(self, message):
+    def sendMessage(self, message : str):
         self.getLogger().log("info", message)
     
     def checkTravisBuild(path):
@@ -94,7 +94,7 @@ class Server:
         print("Build success.")
         os._exit(0)
 
-    def isOp(self, name):
+    def isOp(self, name : str):
         return self.operators.exists(name, True)
 
     def getOps(self):
