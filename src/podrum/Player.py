@@ -10,14 +10,7 @@
 * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 """
 
-from podrum.network.protocol.types.PlayerPermissions import PlayerPermissions
-from podrum.network.PacketPool import PacketPool
-from podrum.network.protocol.BatchPacket import BatchPacket
-from podrum.network.protocol.ProtocolInfo import ProtocolInfo
-from podrum import Server
 
-from rakpy.protocol.EncapsulatedPacket import EncapsulatedPacket
-from rakpy.server.Connection import Connection
 
 class Player:
 
@@ -102,29 +95,29 @@ class Player:
     def getPlayer(self):
         return self
 
-    def getName(self):
+    def getName(self) -> str:
         return self.username
 
-    def getDisplayName(self):
+    def getDisplayName(self) -> str:
         return self.displayName
 
-    def isOp():
+    def isOp(self) -> bool:
         return Server.isOp(self.getName())
 
-    def setAllowedFlight(self, value):
+    def setAllowedFlight(self, value : bool):
         self.allowFlight = value
         self.sendSettings()
 
-    def getAllowedFlight(self):
+    def getAllowedFlight(self) -> bool:
         return self.allowFlight
 
-    def setFlying(self, value):
+    def setFlying(self, value : bool):
         if self.flying != value:
             self.flying = value
             self.resetFallDistance()
             self.sendSettings()
 
-    def isFlying(self):
+    def isFlying(self) -> bool:
         return self.flying
 
     def resetFallDistance(self):
