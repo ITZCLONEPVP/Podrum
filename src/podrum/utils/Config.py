@@ -47,12 +47,12 @@ class Config:
     def fixYamlIndexes(self, data):
         return re.sub(r"#^( *)(y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|False|FALSE|on|On|ON|off|Off|OFF)( *)\:#m", "\1\"\2\"\3:", data)
         
-    def load(self, filePath, formatType = DETECT):
+    async def load(self, filePath, formatType = DETECT):
         self.config = {}
         self.formatType = formatType
         self.filePath = filePath
         if os.path.isfile(filePath):
-            file = open(filePath).read()
+            await file = open(filePath).read()
             if self.formatType == self.DETECT:
                 bname = os.path.basename(self.filePath)
                 extension = os.path.splitext(bname)[0]
@@ -72,19 +72,19 @@ class Config:
             elif self.formatType == self.INI:
                 self.config = toml.loads(content)
                 
-    def save(self):
+    async def save(self):
         file = open(self.filePath, "w")
         try:
             if self.formatType == self.JSON:
-                json.dump(self.config, file)
+                await json.dump(self.config, file)
             elif self.formatType == self.YAML:
-                yaml.dump(self.config, file)
+                await yaml.dump(self.config, file)
             elif self.formatType == self.PROPERTIES:
-                Properties.dump(self.config, file)
+                await Properties.dump(self.config, file)
             elif self.formatType == self.TOML:
-                toml.dump(self.config, file)
+                await toml.dump(self.config, file)
             elif self.formatType == self.INI:
-                toml.dump(self.config, file)
+                await toml.dump(self.config, file)
         except:
             self.server.getLogger().log("error", f"Could not save the config: {self.filePath}")
                 

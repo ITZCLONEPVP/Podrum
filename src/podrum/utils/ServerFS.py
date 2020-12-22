@@ -16,16 +16,16 @@ import zipfile
 from podrum.wizard import Wizard
 
 class ServerFS:
-    def read(file):
+    async def read(file):
         with open(file) as f:
-            content = f.read()
+            await content = f.read()
             f.close()
             return content
 
 
-    def write(file, content):
+    async def write(file, content):
         with open(file) as f:
-            f.write(content)
+            await f.write(content)
             f.close()
 
 
