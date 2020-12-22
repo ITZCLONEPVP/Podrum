@@ -37,6 +37,6 @@ class Logger:
         elif type_ == "critical":
             print(f'{TextFormat.RED}[CRITICAL: {time.strftime("%H:%M")}]{TextFormat.WHITE} {content}')
         elif type_ == "debug":
-            print(f'{TTextFormat.GRAY}[DEBUG: {time.strftime("%H:%M")}]{TextFormat.WHITE} {content}')
+            print(f'{TextFormat.GRAY}[DEBUG: {time.strftime("%H:%M")}]{TextFormat.WHITE} {content}')
         else:
             print(f'[{type_.upper()}: {time.strftime("%H:%M")}]{content}')
